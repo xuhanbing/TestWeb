@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js">
+	
+</script>
+
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+
+				var fadeDuration = 500;//fade间隔
+				var duration = 3000; //轮播间隔
+				var index = 0;//当前索引
+				var t;//循环索引
+				
+				function initItems()
+				{
+					var item1 = {
+							imageUrl : "img/banner1.jpg",
+							targetUrl : "http://www.baidu.com/",
+							title : "百度"
+						};
+						var item2 = {
+							imageUrl : "img/banner2.jpg",
+							targetUrl : "http://www.sina.com/",
+							title : "新浪"
+						};
+						var item3 = {
+							imageUrl : "img/banner3.jpg",
+							targetUrl : "http://www.sohu.com/",
+							title : "搜狐"
+						};
+						var item4 = {
+							imageUrl : "img/banner4.jpg",
+							targetUrl : "http://www.qq.com/",
+							title : "腾讯"
+						};
+						var item5 = {
+							imageUrl : "img/banner5.jpg",
+							targetUrl : "http://www.163.com/",
+							title : "网易"
+						};
+
+						var item;
+
+						var items = new Array();
+						// 				items.push(item1);
+						// 				items.push(item2);
+						// 				items.push(item3);
+						// 				items.push(item4);
+						// 				items.push(item5);
+						items[0] = item1;
+						items[1] = item2;
+						items[2] = item3;
+						items[3] = item4;
+						items[4] = item5;
+
+						var j;
+						$("ul#banner_ul").empty();
+							for (j in items)
+											{
+											item = items[j];
+											var img = $("<img src=" + item.imageUrl + " alt=" + item.title + " >");
+											var a = $("<a href=" + item.targetUrl + "></a>").html(img);
+
+											$("ul#banner_ul").append($("<li></li>").html(a).css("display", "none"));
+											}
+				}
+				
+
+				initItems();
+				
+				
+				function start(){
+// 					$("ul#banner_ul li").first().fadeIn(fadeDuration);
+// 					$("ul#banner_ul li").first().addClass("banner_image_show");
+
+// 					$("ul#banner_ul li").not(":first").fadeOut(fadeDuration);
+// 					$("ul#banner_ul li").not(":first")
+// 							.addClass("banner_image_hide");
+
+				var childs = $("ul#banner_ul li");
+
+					
+					var i;
+					$("#banner_div").empty();
+					for (i = 0; i < childs.length; i++) {
+						var indicator = $("<p></p>");
+
+						$(indicator).addClass("indicator");
+
+						$(indicator).hover(function() {
+							$(this).trigger("click");
+						});
+						$(indicator).click(
+								function() {
+									var ii = $(this).index();
+
+									var select = $("ul#banner_ul li").eq(ii);
+
+									$("ul#banner_ul li").stop(true, true);
+
+									select.siblings().fadeOut(fadeDuration);
+									select.fadeIn(fadeDuration);
+
+										$("p#title").text(
+												$(select).find("img").attr("alt"));
+
+										$(this).addClass("on").siblings().removeClass("on");
+
+								});
+
+
+						$("#banner_div").append(indicator);
+
+					}
+
+					
+					
+					function auto() {
+						
+						var indicators = $("#banner_div").children();
+						indicators.eq(index).trigger("click");
+
+						index++;
+						if (index >= indicators.length) {
+							index = 0;
+						}
+					}
+
+					$("#banner").mouseenter(function() {
+						clearInterval(t);
+					}).mouseleave(function() {
+						auto();
+						t = setInterval(auto, duration);
+					}).trigger("mouseleave");
+				}
+				
+// 				slide("banner_ul", "banner_indicators", 2000, 1000, "indicator");
+start();
+			});
+</script>
+
+
+<style type="text/css">
+body * {
+	display: block;
+	margin: 0px;
+	padding: 0px;
+}
+
+div#banner {
+	position: relative;
+	margin: auto;
+	width: 60%;
+	height: 200px;
+	border: 1px gray solid;
+	overflow: hidden;
+}
+
+div#banner_div {
+	bottom: 10px;
+	right: 10px;
+	position: absolute;
+	background:#888;
+	border: 1px gray solid;
+}
+
+.indicator {
+	width:16px;
+	height:16px;
+	border-radius:8px;
+	-moz-border-radius:8px;
+	margin: 2px;
+	float: left;
+	background: #ddd;
+}
+
+ul, li, a, img {
+}
+
+div .indicator:hover, .on {
+	background: #fff;
+	box-shadow:0 0 2px #ddd;
+}
+
+div .indicator:out {
+	
+}
+
+p#title {
+	bottom: 10px;
+	left: 10px;
+	position: absolute;
+}
+
+.banner_image_show {
+	display: block;
+}
+
+.banner_image_hide {
+	display: none;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+
+
+
+
+
+</div>
+
+	<div id="banner">
+
+		<ul id="banner_ul">
+<!-- 			<li><a href="http://www.baidu.com/"><img alt="百度李彦宏是个傻逼" -->
+<!-- 					src="img/banner1.jpg"></a></li> -->
+<!-- 			<li style="display: none"><a href="http://www.sina.com/"><img -->
+<!-- 					alt="新浪老总是哪个傻逼" src="img/banner2.jpg"></a></li> -->
+<!-- 			<li style="display: none"><a href="http://www.sohu.com/"><img -->
+<!-- 					alt="搜狐张朝阳是个傻逼" src="img/banner3.jpg"></a></li> -->
+<!-- 			<li style="display: none"><a href="http://www.sina.com/"><img -->
+<!-- 					alt="新浪老总是哪个傻逼" src="img/banner4.jpg"></a></li> -->
+<!-- 			<li style="display: none"><a href="http://www.sohu.com/"><img -->
+<!-- 					alt="搜狐张朝阳是个傻逼" src="img/banner5.jpg"></a></li> -->
+		</ul>
+
+		<p id="title">标题</p>
+
+		<div>
+			<div id="banner_div">
+			<ul id="banner_indicators">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			</ul>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

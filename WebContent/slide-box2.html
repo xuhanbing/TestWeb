@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript" src="js/nav.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+
+
+<link type="text/css" href="css/home.css" rel="stylesheet"/>
+<link type="text/css" href="css/global.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+
+
+<div style="width:728px;background: yellow;"> 
+<span class="icon iarr-l croll-bar" id="cturnLeft"></span>
+				<div class="croll-box" id="crollBox">
+					<ul class="croll-inner" id="crollInner">
+						<li><a href="https://www.ming.cn/about/tmall-9119.shtml" target="_blank"><img src="img/logo_custom_tmall.jpg" width="145" height="65" title="天猫tmall.com"></a></li>
+						<li><a href="https://www.ming.cn/about/tencent-9121.shtml" target="_blank"><img src="img/logo_custom_qq.jpg" width="145" height="65" title="腾讯网"></a></li>
+						<li><a href="https://www.ming.cn/about/sina-9120.shtml" target="_blank"><img src="img/logo_custom_sina.jpg" width="145" height="65" title="sina新浪"></a></li>
+						<li><a href="https://www.ming.cn/about/volvogroup-9124.shtml" target="_blank"><img src="img/logo_custom_volvo.jpg" width="145" height="65" title="volvo"></a></li>
+						<li><a href="https://www.ming.cn/about/58tongcheng-9180.shtml" target="_blank"><img src="img/logo_custom_58.jpg" width="145" height="65" title="58同城"></a></li>
+						<li><a href="https://www.ming.cn/about/article-5758.shtml" target="_blank"><img src="img/logo_custom-ctrip.png" width="145" height="65" title="携程"></a></li>
+						<li><a href="https://www.ming.cn/about/oppo-9176.shtml" target="_blank"><img src="img/logo_custom_oppo.jpg" width="145" height="65" title="oppo"></a></li>
+						<li><a href="https://www.ming.cn/about/pingan-9177.shtml" target="_blank"><img src="img/logo_custom_pingan.jpg" width="145" height="65" title="中国平安"></a></li>
+						<li><a href="https://www.ming.cn/about/qunar-9178.shtml" target="_blank"><img src="img/logo_custom_qner.jpg" width="145" height="65" title="去哪儿"></a></li>
+					</ul>
+				</div>
+				<span class="icon iarr-r croll-bar" id="cturnRight"></span> </div>
+		
+		
+		<script type="text/javascript">
+$(function(){
+	//客户滚动
+	horizonRoll('crollBox','crollInner','cturnLeft','cturnRight',300,'arrl-disable','arrr-disable');
+	
+})
+</script>		
+</body>
+</html>

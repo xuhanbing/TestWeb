@@ -1,0 +1,80 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" charset="gb2312" >
+	$(document).ready(function() {
+		// 	  $("button").click(function(){
+		// // 	    $.get("http://www.weather.com.cn/adat/cityinfo/101010100.html",function(data,status){
+		// // 	      alert("数据：" + data + "\n状态：" + status);
+		// // 	    });
+
+		// 		  $.ajax({
+		// 			  url: "test.html",
+		// 			  success: function(data, status){
+		// 				  alert("数据：" + data + "\n状态：" + status);
+		// 			  },
+		// 			  dataType: "html"
+		// 			});
+		// 	  });
+
+		$(":button").click(function() {
+			var text = $("form#register").serialize();
+
+// 			alert("" + text);
+
+			var url1 = "t/register?" + text;
+			$.ajax({
+				type : "POST",
+				url : url1,
+				success : function(data, status) {
+// 					alert("数据：" + data + "\n状态：" + status);
+					
+					var o =  eval('(' + data + ')');
+					
+					
+					if (o.code == 0)
+						{
+						alert("code:" +o.code + ",message:" + o.message)
+						} else {
+							alert("code:" +o.code + ",message:" + o.message)
+						}
+					
+				},
+				error : function(req, status) {
+					alert("失败状态：" + status);
+				},
+			});
+		});
+	});
+</script>
+
+<style type="text/css">
+form * {
+	display: block;
+	border: 2px solid gray;
+	color: gray;
+}
+
+table {
+
+}
+</style>
+
+</head>
+
+<body>
+
+
+	<form id="register" method="post" action="t/register" >
+		帐号：<input type="text" value="" name="username"> 密码：<input
+			type="password" value="" name="password">
+			
+			<input type="button" value="submit"> 
+	</form>
+
+</body>
+
+</html>

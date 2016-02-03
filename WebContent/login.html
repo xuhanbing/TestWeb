@@ -1,0 +1,113 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" charset="gb2312" >
+	$(document).ready(function() {
+		// 	  $("button").click(function(){
+		// // 	    $.get("http://www.weather.com.cn/adat/cityinfo/101010100.html",function(data,status){
+		// // 	      alert("数据：" + data + "\n状态：" + status);
+		// // 	    });
+
+		// 		  $.ajax({
+		// 			  url: "test.html",
+		// 			  success: function(data, status){
+		// 				  alert("数据：" + data + "\n状态：" + status);
+		// 			  },
+		// 			  dataType: "html"
+		// 			});
+		// 	  });
+
+		$(":button#register").click(function(){
+			location.replace("register.html");
+// alert("register")
+		});
+		
+		$(":button#login1").click(function() {
+			var text = $("form#login").serialize();
+
+// 			alert("" + text);
+
+			var url1 = "t/login?" + text;
+			$.ajax({
+				type : "POST",
+				url : url1,
+				success : function(data, status) {
+					alert("数据：" + data + "\n状态：" + status);
+					
+					var o =  eval('(' + data + ')');
+					
+					
+					if (o.code == 0)
+						{
+// 						location.replace("main.html");
+
+// 						alert("data:" + o.data.name);
+						
+// 						var t = $("<table ></table>");
+var t = $("#table");
+						
+						
+						t.empty();
+						
+						for (var f in o.data)
+							{
+							var tr3 = $("<tr></tr>").append($("<th></th>").html(f)).append($("<td></td>").html(o.data[f]));
+							t.append(tr3);
+							}
+						
+						
+						t.css({"border":"none", "border-collapse":"collapse"});
+						
+// 						document.write(data);
+						
+						
+						} else {
+							alert("code:" +o.code + ",message:" + o.message)
+						}
+					
+					
+// 					location.assign("main.html");
+				},
+				error : function(req, status) {
+// 					alert("失败状态：" + status);
+				},
+			});
+		});
+	});
+</script>
+
+<style type="text/css">
+form * {
+	display: block;
+	border: 2px solid gray;
+	color: gray;
+}
+
+table {
+
+}
+</style>
+
+</head>
+
+<body>
+
+
+	<form id="login" method="post" action="t/login" >
+		帐11号：<input type="text" value="x" name="username"> 密码：<input
+			type="password" value="1" name="password">
+			
+			<input type="button" value="login" id="login1">
+			<input type="button" value="register" id="register" > 
+	</form>
+	
+
+	<table id="table"  border="1">
+	</table>
+
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<!-- <script type="text/javascript" src="js/public.js"></script> -->
+<!-- <script type="text/javascript" src="js/nav.js"></script> -->
+<!-- <script type="text/javascript" src="js/page.js"></script> -->
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	var box = $("#crollBox");
+	var scroller = $("#crollInner")
+	var leftBtn = $(".iarr-l");
+	var rightBtn = $(".iarr-r");
+	
+	var items = scroller.children();
+	var itemCount = items.length;
+	var first = items.first();
+	
+	
+	var width = first.width() + parseInt(first.css("margin-left"))+ parseInt(first.css("margin-right")); 
+	
+	
+	scroller.width(itemCount * width);
+	
+	var pageCount = Math.ceil(scroller.width() / box.width());
+	
+	
+	var pageIndex = 0;
+	
+	goPage();
+	function goPage(){
+		
+		var left = -pageIndex * box.width();
+		scroller.stop(true).animate({left:"" + left}, {duration:2000,easing:"easeOutCubic"});
+		
+		if (pageIndex == 0)
+			{
+			leftBtn.addClass("arr-disable")
+			}
+		else {
+			leftBtn.removeClass("arr-disable");
+		}
+		if (pageIndex == pageCount-1)
+			{
+			rightBtn.addClass("arr-disable");
+			}else {
+				rightBtn.removeClass("arr-disable");
+			}
+	}
+	
+	leftBtn.click(function(){
+		if (pageIndex > 0 && pageIndex < pageCount)
+			{
+			pageIndex--;
+			goPage();
+			}
+	});
+	
+	rightBtn.click(function(){
+		
+		if (pageIndex >= 0 && pageIndex < pageCount - 1)
+			{
+			pageIndex++;
+			goPage();
+			}
+	});
+	
+// 	$(".iarr-r").click(function(){
+// // 		var right = $(".croll-inner").right();
+// // 		if (right - width > 0)
+// 		$(".croll-inner").animate({left:'-=' + width});
+// 	})
+	
+// 	$(".iarr-l").click(function(){
+// // 		var left = $(".croll-inner").left();
+// // 		if (left + width <= 0)
+// 		$(".croll-inner").animate({left:'+=' + width});
+// 	})
+	
+});
+</script>
+
+<!-- <link type="text/css" href="css/home.css" rel="stylesheet"/> -->
+<!-- <link type="text/css" href="css/global.css" rel="stylesheet"/> -->
+
+<style type="text/css">
+
+* {
+padding:0;
+margin: 0;
+}
+ .icon { 
+ 	width: 16px; 
+ 	height: 32px; 
+ } 
+
+ .icon { 
+ 	background-image: url("img/mingv1_icobg.png"); 
+ 	background-repeat: no-repeat; 
+ } 
+
+ .iarr-l { 
+ 	background-position: -560px 0; 
+ } 
+
+ .iarr-r { 
+ 	background-position: -600px 0; 
+ } 
+
+.croll-bar.arr-disable {
+ cursor: default;
+ }
+ 
+ .iarr-l.arr-disable { 
+ 	background-position: -560px -40px; 
+ } 
+
+ .iarr-r.arr-disable { 
+
+ 	background-position: -600px -40px; 
+ } 
+
+.container {
+width: 728px;
+}
+
+ .container *,.croll-bar, croll-bar *{float:left;}
+.croll-bar,.proll-bar{cursor:pointer;}
+.croll-bar{margin-top:16px; }
+.croll-box{position:relative;margin:0 10px;overflow:hidden;width:676px;background: red}
+.croll-inner,.proll-inner{position:relative;}
+.croll-inner,.croll-inner li{height:65px;}
+.croll-inner li{display:inline;margin:0 12px;width:145px;}
+
+ img { 
+ width: 145px; 
+ height: 65px; 
+ } 
+ .croll-inner { 
+ background: yellow; 
+ } 
+
+ .croll-bar { 
+ margin-top: 16px; 
+ } 
+
+</style>
+</head>
+<body>
+
+
+	<div class="container">
+
+		<span id="cturnLeft" class="croll-bar icon iarr-l"></span>
+
+		<div class="croll-box" id="crollBox">
+
+			<ul class="croll-inner" id="crollInner">
+<!-- 				<li class="croll-bar-item"><img alt="58" -->
+<!-- 					src="img/logo_custom_58.jpg"></li> -->
+<!-- 				<li class="croll-bar-item"><img alt="oppo" -->
+<!-- 					src="img/logo_custom_oppo.jpg"></li> -->
+<!-- 				<li class="croll-bar-item"><img alt="pingan" -->
+<!-- 					src="img/logo_custom_pingan.jpg"></li> -->
+<!-- 				<li class="croll-bar-item"><img alt="qner" -->
+<!-- 					src="img/logo_custom_qner.jpg"></li> -->
+<!-- 				<li class="croll-bar-item"><img alt="qq" -->
+<!-- 					src="img/logo_custom_qq.jpg"></li> -->
+<!-- 				<li class="croll-bar-item"><img alt="sina" -->
+<!-- 					src="img/logo_custom_sina.jpg"></li> -->
+<!-- 				<li class="croll-bar-item"><img alt="tmall" -->
+<!-- 					src="img/logo_custom_tmall.jpg"></li> -->
+<!-- 				<li class="croll-bar-item"><img alt="volvo" -->
+<!-- 					src="img/logo_custom_volvo.jpg"></li> -->
+<!-- 				<li class="croll-bar-item"><img alt="ctrip" -->
+<!-- 					src="img/logo_custom-ctrip.png"></li> -->
+<li><a href="https://www.ming.cn/about/tmall-9119.shtml" target="_blank"><img src="img/logo_custom_tmall.jpg" width="145" height="65" title="天猫tmall.com"></a></li>
+						<li><a href="https://www.ming.cn/about/tencent-9121.shtml" target="_blank"><img src="img/logo_custom_qq.jpg" width="145" height="65" title="腾讯网"></a></li>
+						<li><a href="https://www.ming.cn/about/sina-9120.shtml" target="_blank"><img src="img/logo_custom_sina.jpg" width="145" height="65" title="sina新浪"></a></li>
+						<li><a href="https://www.ming.cn/about/volvogroup-9124.shtml" target="_blank"><img src="img/logo_custom_volvo.jpg" width="145" height="65" title="volvo"></a></li>
+						<li><a href="https://www.ming.cn/about/58tongcheng-9180.shtml" target="_blank"><img src="img/logo_custom_58.jpg" width="145" height="65" title="58同城"></a></li>
+						<li><a href="https://www.ming.cn/about/article-5758.shtml" target="_blank"><img src="img/logo_custom-ctrip.png" width="145" height="65" title="携程"></a></li>
+						<li><a href="https://www.ming.cn/about/oppo-9176.shtml" target="_blank"><img src="img/logo_custom_oppo.jpg" width="145" height="65" title="oppo"></a></li>
+						<li><a href="https://www.ming.cn/about/pingan-9177.shtml" target="_blank"><img src="img/logo_custom_pingan.jpg" width="145" height="65" title="中国平安"></a></li>
+						<li><a href="https://www.ming.cn/about/qunar-9178.shtml" target="_blank"><img src="img/logo_custom_qner.jpg" width="145" height="65" title="去哪儿"></a></li>
+
+
+			</ul>
+
+		</div>
+
+		<span id="cturnRight" class="croll-bar icon iarr-r "></span>
+
+	</div>
+	
+	<script type="text/javascript">
+$(function(){
+	//客户滚动
+	horizonRoll('crollBox','crollInner','cturnLeft','cturnRight',300,'arr-disable','arr-disable');
+	
+})
+</script>
+</body>
+</html>
